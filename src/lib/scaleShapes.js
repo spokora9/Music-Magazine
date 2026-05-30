@@ -159,8 +159,10 @@ export function getScalePositions(root, scaleType) {
         };
     });
 
-    // Sort by startFret so positions run low-to-high on the neck
-    return raw.sort((a, b) => a.startFret - b.startFret);
+    // Sort low-to-high on the neck, then renumber 1–5 consistently
+    return raw
+        .sort((a, b) => a.startFret - b.startFret)
+        .map((pos, i) => ({ ...pos, position: i + 1, label: `Position ${i + 1}` }));
 }
 
 // Common progressions per scale type for the "Try it on" section

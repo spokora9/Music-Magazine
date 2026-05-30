@@ -7,6 +7,9 @@
   import { SCALE_LABELS } from "../lib/modalMixture";
   import { jamHandoffTrack } from "../lib/stores";
   import { Audio } from "../lib/audio";
+  import { createEventDispatcher } from "svelte";
+
+  const dispatch = createEventDispatcher();
 
   // ── Controls ──────────────────────────────────────────────────────────────
   let selectedKey   = "C";
@@ -19,7 +22,7 @@
   // ── Derived data ──────────────────────────────────────────────────────────
   $: root         = normalizeNoteName(selectedKey) || "C";
   $: fretboard    = buildFretboard(root, selectedScale);
-  $: positions    = getScalePositions(root, selectedScale);
+  $: positions    = (selectedPos = 0, getScalePositions(root, selectedScale));
   $: diatonic     = getDiatonicChords(root, selectedScale);
   $: progressions = getProgressionsForScale(root, selectedScale);
   $: activePos    = positions[selectedPos] || positions[0];
@@ -50,6 +53,7 @@
   function loadProgressionIntoJam(prog) {
     if (!prog?.track) return;
     jamHandoffTrack.set(prog.track);
+    dispatch("openJam");
   }
 
   async function previewChord(chord) {

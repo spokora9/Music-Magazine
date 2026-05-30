@@ -730,7 +730,7 @@
         {:else if activeModule === "spark"}
           <SparkGenerator on:openJam={() => switchPage("jam")} />
         {:else if activeModule === "scales"}
-          <ScaleExplorer />
+          <ScaleExplorer on:openJam={() => switchPage("jam")} />
         {:else}
           <div class="h-full flex flex-col items-center justify-center opacity-50">
             <div class="text-6xl mb-4 text-stone-800">??</div>
