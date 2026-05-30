@@ -1,0 +1,29 @@
+[package]
+name = "shed-power"
+version = "1.0.0"
+description = "High-Performance Rust Audio Engine for The Shed"
+authors = ["you"]
+edition = "2021"
+
+[lib]
+name = "shed_power_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.0.0", features = [] }
+
+[dependencies]
+tauri = { version = "2.0.0", features = [] }
+tauri-plugin-shell = "2.0.0"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# --- AUDIO ENGINE DEPENDENCIES ---
+cpal = "0.15"       # Low-level cross-platform audio I/O
+ringbuf = "0.3"     # Lock-free SPSC queue for Audio Thread communication
+anyhow = "1.0"      # Error handling
+rand = "0.8"        # For Noise generation and drift
+hound = "3.5"       # For WAV export (future)
+
+[target.'cfg(not(target_os = "android"))'.dependencies]
+midir = "0.9"       # MIDI Input/Output

@@ -1,0 +1,16 @@
+node_modules/
+dist/
+
+src-tauri/target/
+src-tauri/gen/android/.gradle/
+src-tauri/gen/android/**/build/
+
+*.log
+*.tmp
+*.bak
+*.apk
+*.aab
+*.msi
+*.nsis.zip
+
+%APPDATA%/shed-power/
