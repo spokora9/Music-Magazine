@@ -196,7 +196,8 @@ await check("all main app routes are wired", () => {
     practice: "PracticeTimer",
     challenge: "ChallengeDeck",
     myshed: "MyShed",
-    spark: "SparkGenerator"
+    spark: "SparkGenerator",
+    scales: "ScaleExplorer"
   };
 
   for (const [route, component] of Object.entries(routes)) {

@@ -6,6 +6,7 @@
   import LickLibrary from "./components/LickLibrary.svelte";
   import Magazine from "./components/Magazine.svelte";
   import SparkGenerator from "./components/SparkGenerator.svelte";
+  import ScaleExplorer from "./components/ScaleExplorer.svelte";
   import PracticeTimer from "./components/PracticeTimer.svelte";
   import ChallengeDeck from "./components/ChallengeDeck.svelte";
   import MyShed from "./components/MyShed.svelte";
@@ -661,6 +662,12 @@
         VISUALIZER
       </button>
 
+      <button on:click={() => switchPage("scales")}
+        class="text-left px-4 py-3 rounded transition-all font-bold text-sm
+        {activeModule === "scales" ? "bg-stone-800 text-white border border-stone-700 shadow-sm" : "text-stone-400 hover:text-white hover:bg-stone-800/50"}">
+        SCALE EXPLORER
+      </button>
+
       <div class="text-xs font-bold text-stone-500 uppercase tracking-widest mb-2 mt-6 px-2">Knowledge</div>
 
       <button on:click={() => switchPage("magazine")}
@@ -722,6 +729,8 @@
           <MyShed on:openJam={() => switchPage("jam")} />
         {:else if activeModule === "spark"}
           <SparkGenerator on:openJam={() => switchPage("jam")} />
+        {:else if activeModule === "scales"}
+          <ScaleExplorer />
         {:else}
           <div class="h-full flex flex-col items-center justify-center opacity-50">
             <div class="text-6xl mb-4 text-stone-800">??</div>
